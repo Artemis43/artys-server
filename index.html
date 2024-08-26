@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arty's Server</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
         body {
             margin: 0;
             padding: 0;
@@ -12,37 +14,74 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #1E1E1E;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, rgba(34,34,34,1) 0%, rgba(24,24,24,1) 50%, rgba(18,18,18,1) 100%);
+            font-family: 'Press Start 2P', cursive;
             color: #E1E1E1;
+            overflow: hidden;
+            image-rendering: pixelated;
         }
+
         h1 {
             font-size: 3rem;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
+
         a {
             text-decoration: none;
-            color: #E1E1E1;
+            color: #FFF;
         }
+
         .btn {
             padding: 12px 24px;
             font-size: 1.2rem;
-            background-color: #3B3B3B;
+            background-color: #444;
+            color: #FFF;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
+
         .btn:hover {
-            background-color: #5B5B5B;
+            background-color: #666;
+            transform: scale(1.05);
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Monospace text for whitelisted message */
+        .whitelist-message {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Background pattern design */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%);
+            opacity: 0.1;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <div>
+    <div class="container">
+        <div class="whitelist-message">whitelist-users = true</div>
         <h1>Arty's Server</h1>
         <a href="minecraft://?addExternalServer=Arty's Server|gn2.slicehosting.tech:34766">
-            <button class="btn">Add Server to Minecraft</button>
+            <button class="btn">Go to Server</button>
         </a>
     </div>
 </body>
