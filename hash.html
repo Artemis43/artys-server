@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hash Usernames</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1E1E1E;
+            color: #E1E1E1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        input {
+            font-size: 1rem;
+            width: 300px;
+        }
+        button {
+            background-color: #444;
+            color: #FFF;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #666;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hash Your Usernames</h1>
+    <input type="text" id="usernameInput" placeholder="Enter a username">
+    <button onclick="hashUsername()">Hash Username</button>
+    <div class="output" id="output"></div>
+
+    <script>
+        function hashString(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash;
+        }
+
+        function hashUsername() {
+            const username = document.getElementById('usernameInput').value.trim().toLowerCase();
+            const hashedUsername = hashString(username);
+            document.getElementById('output').textContent = `Hashed Value: ${hashedUsername}`;
+        }
+    </script>
+
+</body>
+</html>

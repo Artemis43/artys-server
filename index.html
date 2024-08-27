@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crooked Network</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta http-equiv="refresh" content="120"> <!-- Refresh the page every 2 minutes -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@600&display=swap');
 
         body {
             margin: 0;
@@ -24,7 +25,7 @@
 
         h1 {
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 40px; /* Increased margin to create a gap */
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -76,15 +77,66 @@
             opacity: 0.1;
             z-index: 1;
         }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 20px;
+        }
+
+        /* Input field styling */
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.2rem;
+            border: 2px solid #444;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #333;
+            color: #FFF;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #666;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="whitelist-message">Arty's GeyserMC-Integrated Server</div>
         <h1>Crooked Network</h1>
-        <a href="minecraft://?addExternalServer=Crooked Network|gn2.slicehosting.tech:34766">
-            <button class="btn">Go to Server</button>
-        </a>
+        <input type="text" id="usernameInput" placeholder="Xbox Username" required>
+        <button class="btn" onclick="checkUsername()">Go to Server</button>
+        <div class="error-message" id="errorMessage"></div>
     </div>
+
+    <script>
+        function hashString(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                const char = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + char;
+                hash |= 0; // Convert to 32bit integer
+            }
+            return hash;
+        }
+
+        function checkUsername() {
+            const hashedAllowedUsernames = [1020015686, 347722026, -827182645, 1452036565, 1963694615, 1406831269]; // Pre-hashed usernames
+            const inputUsername = document.getElementById('usernameInput').value.trim().toLowerCase();
+            const hashedInput = hashString(inputUsername);
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (hashedAllowedUsernames.includes(hashedInput)) {
+                // Redirect to the server URL
+                window.location.href = "minecraft://?addExternalServer=Crooked Network|gn2.slicehosting.tech:34766";
+            } else {
+                // Show error message
+                errorMessage.textContent = "Access Denied: Username not whitelisted in Server.";
+            }
+        }
+    </script>
 </body>
 </html>
