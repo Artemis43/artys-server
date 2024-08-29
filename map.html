@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Page</title>
+    <title>Dynamic Server Map</title>
+    <!--<meta http-equiv="refresh" content="300">-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
+        /* Remove any margin or padding */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
         }
+        /* Fullscreen iframe */
         iframe {
             width: 100%;
             height: 100%;
@@ -18,6 +23,6 @@
     </style>
 </head>
 <body>
-    <iframe src="/.netlify/functions/proxy"></iframe>
+    <iframe src="http://koims-outlaws.mcpe.hstn.me:25381/"></iframe>
 </body>
 </html>
